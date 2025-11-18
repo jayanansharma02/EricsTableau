@@ -1,285 +1,309 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ericsson Managed Services</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ericsson Managed Services — Homepage</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-    --bg-1:#14041d;
-    --accent:#ff8a00;
-    --card:rgba(255,255,255,0.05);
+  --accent:#ff8a00;
+  --bg:#0f1724;
+  --card-radius:14px;
 }
-
+*{box-sizing:border-box}
 body{
-    margin:0;
-    font-family:"Inter",sans-serif;
-    color:white;
-    background:#14041d;
+  margin:0;
+  font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  background:var(--bg);
+  color:#fff;
+  -webkit-font-smoothing:antialiased;
 }
 
-/* Background image */
-.bg {
-    position:fixed;
-    inset:0;
-    background-image:url("https://raw.githubusercontent.com/jayanansharma02/EricsTableau/d2f6938f6ab7802f77bccd96de50534240582a6b/Adobe%20Express_3000x1800.png");
-    background-size:cover;
-    background-position:center;
-    filter:brightness(0.35);
-    z-index:0;
+/* ========================================================= */
+/* BACKGROUND IMAGE (updated to your GitHub image)           */
+/* ========================================================= */
+.bg{
+  position:fixed; inset:0; z-index:0;
+  background-image:url("https://raw.githubusercontent.com/jayanansharma02/EricsTableau/bbcec9e1b09b4a3b1c2d1214b11cce5fba36ffd4/resized_1500x1000.jpg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  filter:brightness(0.32);
 }
 
-/* Page wrapper */
-.page{
-    position:relative;
-    z-index:2;
-    max-width:1280px;
-    margin:auto;
-    padding:30px;
+/* container */
+.container{
+  position:relative;
+  z-index:2;
+  max-width:1280px;
+  margin:20px auto;
+  padding:22px;
 }
 
-/* Top bar */
-.topbar{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    margin-bottom:20px;
+/* top bar */
+.topline{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  margin-bottom:12px;
 }
-
 .badge{
-    background:#ff8a00;
-    padding:10px 18px;
-    font-weight:800;
-    border-radius:10px;
-    box-shadow:0 8px 25px rgba(255,138,0,0.25);
+  background:linear-gradient(180deg,#ff9b2b,#ff6a00);
+  color:#111;
+  padding:10px 18px;
+  border-radius:10px;
+  font-weight:800;
+  box-shadow:0 8px 28px rgba(255,138,0,0.18);
 }
-
 .brand{
-    font-size:20px;
-    font-weight:600;
+  font-weight:600;
+  font-size:18px;
+  opacity:0.95;
 }
 
-/* Hero section */
+/* hero section */
 .hero{
-    background:rgba(255,255,255,0.06);
-    padding:50px;
-    border-radius:20px;
-    box-shadow:0 10px 40px rgba(0,0,0,0.35);
-    border:1px solid rgba(255,255,255,0.1);
+  background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.20));
+  padding:36px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.05);
+  box-shadow:0 12px 40px rgba(0,0,0,0.55);
+}
+.h-title{
+  font-size:clamp(30px,4vw,64px);
+  margin:0;
+  font-weight:800;
+  line-height:0.95;
+}
+.h-sub{
+  margin-top:10px;
+  font-size:clamp(14px,2vw,20px);
+  color:rgba(255,255,255,0.9);
 }
 
-.hero h1{
-    margin:0;
-    font-size:80px;
-    font-weight:800;
+/* ========================================================= */
+/* TOP NAV CARDS — EQUAL SIZE + RESPONSIVE                   */
+/* ========================================================= */
+.cards-top{
+  margin-top:28px;
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+  align-items:stretch;
 }
 
-.hero .subtitle{
-    margin-top:10px;
-    font-size:26px;
-    opacity:0.9;
+/* Equal-size cards */
+.card-nav{
+  flex:1 1 0;
+  min-width:180px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.15));
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:var(--card-radius);
+  padding:18px;
+  position:relative;
+  box-shadow:0 8px 28px rgba(0,0,0,0.48);
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:transform .14s ease;
+}
+.card-nav:hover{transform:translateY(-4px)}
+
+/* Titles auto shrink */
+.card-title{
+  font-size:clamp(16px,1.8vw,20px);
+  font-weight:800;
+  color:var(--accent);
+  margin:0;
+  line-height:1.1;
+}
+.card-sub{
+  font-size:clamp(12px,1.4vw,15px);
+  margin-top:8px;
+  color:rgba(255,255,255,0.92);
+  font-weight:500;
 }
 
-/* Search + buttons row */
-.controls{
-    margin-top:25px;
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
+.card-top-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
 }
 
-.search{
-    flex:1;
-    background:rgba(255,255,255,0.08);
-    padding:14px 20px;
-    border-radius:12px;
-    display:flex;
-    align-items:center;
-    gap:10px;
+/* dropdown arrow */
+.chev-btn{
+  background:transparent;
+  border:0;
+  color:var(--accent);
+  font-weight:800;
+  font-size:18px;
+  cursor:pointer;
+  width:36px;
+  height:36px;
+  border-radius:8px;
 }
 
-.search input{
-    flex:1;
-    background:transparent;
-    border:0;
-    outline:none;
-    color:white;
-    font-size:16px;
+/* ========================================================= */
+/* SUBMENU (glassy overlay dropdown)                         */
+/* ========================================================= */
+.submenu{
+  position:absolute;
+  left:12px;
+  right:12px;
+  top:100%;
+  margin-top:10px;
+  display:none;
+  z-index:9999;
+
+  background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.70));
+  border:1px solid rgba(255,255,255,0.06);
+  padding:10px;
+  border-radius:10px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.7);
+}
+.card-nav.open .submenu{display:block}
+
+/* submenu links */
+.submenu a{
+  display:block;
+  padding:10px 12px;
+  border-radius:8px;
+  background:rgba(255,255,255,0.02);
+  color:#fff;
+  font-weight:700;
+  text-decoration:none;
+  border:1px solid rgba(255,255,255,0.03);
+  margin-bottom:8px;
+}
+.submenu a:hover{
+  background:linear-gradient(180deg, rgba(255,138,0,0.1), rgba(255,138,0,0.03));
+  color:#111;
+  border-color:rgba(255,138,0,0.18);
+  transform:translateY(-2px);
+  transition:all .15s ease;
 }
 
-.tag{
-    padding:10px 16px;
-    background:rgba(255,255,255,0.1);
-    border-radius:10px;
-    font-weight:700;
-}
-
-/* Buttons */
-.btn{
-    padding:12px 20px;
-    border-radius:10px;
-    font-weight:700;
-    cursor:pointer;
-    border:1px solid rgba(255,255,255,0.15);
-}
-
-.btn-primary{
-    background:#ff8a00;
-    color:#111;
-    box-shadow:0 8px 20px rgba(255,138,0,0.25);
-    border:0;
-}
-
-/* KPI cards */
-.cards{
-    display:flex;
-    gap:20px;
-    margin-top:30px;
-    flex-wrap:wrap;
-}
-
-.card{
-    flex:1;
-    min-width:250px;
-    background:rgba(255,255,255,0.06);
-    padding:20px;
-    border-radius:14px;
-    display:flex;
-    gap:15px;
-    align-items:center;
-    border:1px solid rgba(255,255,255,0.1);
-    box-shadow:0 10px 35px rgba(0,0,0,0.35);
-}
-
-.card .icon{
-    width:50px;
-    height:50px;
-    border-radius:12px;
-    background:rgba(0,0,0,0.5);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:800;
-    font-size:22px;
-}
-
-.card .title{
-    font-size:18px;
-    font-weight:800;
-}
-
-.card .meta{
-    font-size:14px;
-    opacity:0.75;
-}
-
-/* Footer box */
-.hero-footer{
-    margin-top:25px;
-    padding:24px;
-    background:rgba(255,255,255,0.08);
-    border-radius:14px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border:1px solid rgba(255,255,255,0.1);
-}
-
-.hero-footer .left{
-    font-weight:800;
-    font-size:20px;
-}
-
-.hero-footer .meta{
-    font-size:14px;
-    opacity:0.85;
+@media (max-width:600px){
+  .card-title{font-size:16px}
 }
 </style>
 </head>
 
 <body>
-
 <div class="bg"></div>
 
-<div class="page">
+<div class="container">
 
-    <div class="topbar">
-        <div class="badge">Live Dashboard</div>
-        <div class="brand">Ericsson Managed Services</div>
-    </div>
+  <!-- Top badge + brand -->
+  <div class="topline">
+    <div class="badge">Live Dashboard</div>
+    <div class="brand">Ericsson Managed Services</div>
+  </div>
 
-    <div class="hero">
-        <h1>Ericsson Managed Services</h1>
-        <div class="subtitle">
-            Standard Benchmarking Template — Live insights, trends & impact
+  <section class="hero">
+
+    <h1 class="h-title">Ericsson Managed Services</h1>
+    <div class="h-sub">Standard Benchmarking Template — Live insights, trends & impact</div>
+
+    <!-- ========================================================= -->
+    <!-- TOP NAVIGATION CARDS (5 equal cards)                    -->
+    <!-- ========================================================= -->
+    <div class="cards-top">
+
+      <!-- 1 KPI (with submenu) -->
+      <div class="card-nav" id="kpi-card">
+        <div class="card-top-row">
+          <div>
+            <div class="card-title">KPI Comparison YOY</div>
+            <div class="card-sub">Compare across years</div>
+          </div>
+          <button class="chev-btn" onclick="toggleSub('kpi-card')">▾</button>
         </div>
 
-        <!-- Controls -->
-        <div class="controls">
-            <div class="search">
-                <input type="text" placeholder="abc" />
-                <div class="tag">Global</div>
-            </div>
+        <div class="submenu" id="kpi-sub">
+          <a href="#" target="_blank">KPI YOY — Sub Dashboard 1</a>
+          <a href="#" target="_blank">KPI YOY — Sub Dashboard 2</a>
+        </div>
+      </div>
 
-            <button class="btn btn-primary">KPI Comparison</button>
-            <button class="btn">Account Info</button>
-            <button class="btn">Footprint</button>
+      <!-- 2 Trending (submenu) -->
+      <div class="card-nav" id="trend-card">
+        <div class="card-top-row">
+          <div>
+            <div class="card-title">Trending & Rank</div>
+            <div class="card-sub">Top movers & trends</div>
+          </div>
+          <button class="chev-btn" onclick="toggleSub('trend-card')">▾</button>
         </div>
 
-        <!-- Cards -->
-        <div class="cards">
-            <div class="card">
-                <div class="icon">A</div>
-                <div>
-                    <div class="title">KPI Comparison YOY</div>
-                    <div class="meta">Compare across years</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="icon">T</div>
-                <div>
-                    <div class="title">Trending & Rank</div>
-                    <div class="meta">Top movers & trends</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="icon">F</div>
-                <div>
-                    <div class="title">FootPrint</div>
-                    <div class="meta">Sites & coverage</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="icon">I</div>
-                <div>
-                    <div class="title">Ericsson Impact</div>
-                    <div class="meta">Automation outcomes</div>
-                </div>
-            </div>
+        <div class="submenu" id="trend-sub">
+          <a href="#" target="_blank">Trending — Sub Dashboard 1</a>
+          <a href="#" target="_blank">Trending — Sub Dashboard 2</a>
         </div>
+      </div>
 
-        <!-- Footer -->
-        <div class="hero-footer">
-            <div>
-                <div class="left">Selected Account</div>
-                <div class="meta">MBNL — 4G RAN Availability 99.63%</div>
-            </div>
-
-            <div style="text-align:right">
-                <div class="meta">Last updated: Today • Live</div>
-                <br>
-                <button class="btn btn-primary" style="font-size:14px;">Open Dashboard</button>
-            </div>
+      <!-- 3 FootPrint -->
+      <div class="card-nav">
+        <div>
+          <div class="card-title">FootPrint</div>
+          <div class="card-sub">Sites & coverage</div>
         </div>
-    </div>
+      </div>
 
-</div>
+      <!-- 4 Ericsson Impact -->
+      <div class="card-nav">
+        <div>
+          <div class="card-title">Ericsson Impact</div>
+          <div class="card-sub">Automation outcomes</div>
+        </div>
+      </div>
+
+      <!-- 5 Account Information -->
+      <div class="card-nav">
+        <div>
+          <div class="card-title">Account Info</div>
+          <div class="card-sub">Detailed metadata</div>
+        </div>
+      </div>
+
+    </div><!-- /.cards-top -->
+
+  </section><!-- /.hero -->
+
+</div><!-- /.container -->
+
+<script>
+/* Dropdown toggle (no scroll, overlay menu) */
+function toggleSub(id){
+  const card = document.getElementById(id);
+  const isOpen = card.classList.contains("open");
+
+  document.querySelectorAll(".card-nav.open").forEach(c=>{
+    c.classList.remove("open");
+  });
+
+  if(!isOpen){ card.classList.add("open"); }
+}
+
+/* Close dropdown on outside click */
+document.addEventListener("click", e=>{
+  if(!e.target.closest(".card-nav")){
+    document.querySelectorAll(".card-nav.open").forEach(c=>c.classList.remove("open"));
+  }
+});
+
+/* Close on ESC */
+document.addEventListener("keydown", e=>{
+  if(e.key==="Escape"){
+    document.querySelectorAll(".card-nav.open").forEach(c=>c.classList.remove("open"));
+  }
+});
+</script>
 
 </body>
 </html>
