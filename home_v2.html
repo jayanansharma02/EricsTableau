@@ -9,7 +9,7 @@
 
 <style>
 :root{
-  --accent:#ff8a00;
+  --accent:#FF8C0A;
   --bg:#0f1724;
   --card-radius:14px;
 }
@@ -22,9 +22,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-/* ========================================================= */
-/* BACKGROUND IMAGE (updated to your GitHub image)           */
-/* ========================================================= */
+/* Background */
 .bg{
   position:fixed; inset:0; z-index:0;
   background-image:url("https://raw.githubusercontent.com/jayanansharma02/EricsTableau/bbcec9e1b09b4a3b1c2d1214b11cce5fba36ffd4/resized_1500x1000.jpg");
@@ -43,28 +41,30 @@ body{
   padding:22px;
 }
 
-/* top bar */
+/* Top */
 .topline{
   display:flex;
   align-items:center;
   gap:18px;
   margin-bottom:12px;
 }
+
 .badge{
-  background:linear-gradient(180deg,#ff9b2b,#ff6a00);
+  background:#FF8C0A;
   color:#111;
   padding:10px 18px;
   border-radius:10px;
   font-weight:800;
-  box-shadow:0 8px 28px rgba(255,138,0,0.18);
+  box-shadow:0 8px 28px rgba(255,140,10,0.28);
 }
+
 .brand{
   font-weight:600;
   font-size:18px;
   opacity:0.95;
 }
 
-/* hero section */
+/* Hero */
 .hero{
   background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.20));
   padding:36px;
@@ -72,6 +72,7 @@ body{
   border:1px solid rgba(255,255,255,0.05);
   box-shadow:0 12px 40px rgba(0,0,0,0.55);
 }
+
 .h-title{
   font-size:clamp(30px,4vw,64px);
   margin:0;
@@ -84,9 +85,7 @@ body{
   color:rgba(255,255,255,0.9);
 }
 
-/* ========================================================= */
-/* TOP NAV CARDS — EQUAL SIZE + RESPONSIVE                   */
-/* ========================================================= */
+/* Cards */
 .cards-top{
   margin-top:28px;
   display:flex;
@@ -95,7 +94,6 @@ body{
   align-items:stretch;
 }
 
-/* Equal-size cards */
 .card-nav{
   flex:1 1 0;
   min-width:180px;
@@ -105,15 +103,17 @@ body{
   padding:18px;
   position:relative;
   box-shadow:0 8px 28px rgba(0,0,0,0.48);
-
   display:flex;
   flex-direction:column;
   justify-content:space-between;
   transition:transform .14s ease;
+  cursor:pointer;
 }
-.card-nav:hover{transform:translateY(-4px)}
 
-/* Titles auto shrink */
+.card-nav:hover{
+  transform:translateY(-4px)
+}
+
 .card-title{
   font-size:clamp(16px,1.8vw,20px);
   font-weight:800;
@@ -121,6 +121,7 @@ body{
   margin:0;
   line-height:1.1;
 }
+
 .card-sub{
   font-size:clamp(12px,1.4vw,15px);
   margin-top:8px;
@@ -135,7 +136,7 @@ body{
   gap:12px;
 }
 
-/* dropdown arrow */
+/* Chevron */
 .chev-btn{
   background:transparent;
   border:0;
@@ -148,9 +149,7 @@ body{
   border-radius:8px;
 }
 
-/* ========================================================= */
-/* SUBMENU (glassy overlay dropdown)                         */
-/* ========================================================= */
+/* Submenu */
 .submenu{
   position:absolute;
   left:12px;
@@ -159,16 +158,17 @@ body{
   margin-top:10px;
   display:none;
   z-index:9999;
-
   background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.70));
   border:1px solid rgba(255,255,255,0.06);
   padding:10px;
   border-radius:10px;
   box-shadow:0 20px 60px rgba(0,0,0,0.7);
 }
-.card-nav.open .submenu{display:block}
 
-/* submenu links */
+.card-nav.open .submenu{
+  display:block;
+}
+
 .submenu a{
   display:block;
   padding:10px 12px;
@@ -180,17 +180,21 @@ body{
   border:1px solid rgba(255,255,255,0.03);
   margin-bottom:8px;
 }
-.submenu a:hover{
-  background:linear-gradient(180deg, rgba(255,138,0,0.1), rgba(255,138,0,0.03));
-  color:#111;
-  border-color:rgba(255,138,0,0.18);
-  transform:translateY(-2px);
-  transition:all .15s ease;
+.submenu a:last-child{
+  margin-bottom:0;
 }
 
-@media (max-width:600px){
-  .card-title{font-size:16px}
+/* ALWAYS WHITE TEXT */
+.submenu a:hover,
+.submenu a:active,
+.submenu a:focus {
+  background:linear-gradient(180deg, rgba(255,140,10,0.12), rgba(255,140,10,0.05));
+  border-color:rgba(255,140,10,0.22);
+  transform:translateY(-2px);
+  transition:all .15s ease;
+  color:#fff !important;
 }
+
 </style>
 </head>
 
@@ -199,7 +203,6 @@ body{
 
 <div class="container">
 
-  <!-- Top badge + brand -->
   <div class="topline">
     <div class="badge">Live Dashboard</div>
     <div class="brand">Ericsson Managed Services</div>
@@ -210,94 +213,85 @@ body{
     <h1 class="h-title">Ericsson Managed Services</h1>
     <div class="h-sub">Standard Benchmarking Template — Live insights, trends & impact</div>
 
-    <!-- ========================================================= -->
-    <!-- TOP NAVIGATION CARDS (5 equal cards)                    -->
-    <!-- ========================================================= -->
     <div class="cards-top">
 
-      <!-- 1 KPI (with submenu) -->
-      <div class="card-nav" id="kpi-card">
+      <!-- KPI -->
+      <div class="card-nav" id="kpi-card" onclick="window.open('https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/KPI_Comparison_YOY/Home?:iid=2','_blank')">
         <div class="card-top-row">
           <div>
             <div class="card-title">KPI Comparison YOY</div>
             <div class="card-sub">Compare across years</div>
           </div>
-          <button class="chev-btn" onclick="toggleSub('kpi-card')">▾</button>
+          <button class="chev-btn" onclick="event.stopPropagation(); toggleSub('kpi-card')">▾</button>
         </div>
 
         <div class="submenu" id="kpi-sub">
-          <a href="#" target="_blank">KPI YOY — Sub Dashboard 1</a>
-          <a href="#" target="_blank">KPI YOY — Sub Dashboard 2</a>
+          <a href="https://example.com/kpi-mema" target="_blank">KPI Comparison YOY — MEMA</a>
+          <a href="https://example.com/kpi-moai" target="_blank">KPI Comparison YOY — MOAI</a>
         </div>
       </div>
 
-      <!-- 2 Trending (submenu) -->
-      <div class="card-nav" id="trend-card">
+      <!-- Trending -->
+      <div class="card-nav" id="trend-card" onclick="window.open('https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/Trending_and_Ranking/Home?:iid=3','_blank')">
         <div class="card-top-row">
           <div>
-            <div class="card-title">Trending & Rank</div>
+            <div class="card-title">Trending & Ranking</div>
             <div class="card-sub">Top movers & trends</div>
           </div>
-          <button class="chev-btn" onclick="toggleSub('trend-card')">▾</button>
+          <button class="chev-btn" onclick="event.stopPropagation(); toggleSub('trend-card')">▾</button>
         </div>
 
         <div class="submenu" id="trend-sub">
-          <a href="#" target="_blank">Trending — Sub Dashboard 1</a>
-          <a href="#" target="_blank">Trending — Sub Dashboard 2</a>
+          <a href="https://example.com/trending-mema" target="_blank">Trending & Ranking — MEMA</a>
+          <a href="https://example.com/trending-moai" target="_blank">Trending & Ranking — MOAI</a>
         </div>
       </div>
 
-      <!-- 3 FootPrint -->
-      <div class="card-nav">
+      <!-- FootPrint -->
+      <div class="card-nav" onclick="window.open('https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/Footprint/Home?:iid=1','_blank')">
         <div>
           <div class="card-title">FootPrint</div>
           <div class="card-sub">Sites & coverage</div>
         </div>
       </div>
 
-      <!-- 4 Ericsson Impact -->
-      <div class="card-nav">
+      <!-- Impact -->
+      <div class="card-nav" onclick="window.open('https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/EricssonImpact/Home?:iid=2','_blank')">
         <div>
           <div class="card-title">Ericsson Impact</div>
           <div class="card-sub">Automation outcomes</div>
         </div>
       </div>
 
-      <!-- 5 Account Information -->
-      <div class="card-nav">
+      <!-- Account Info -->
+      <div class="card-nav" onclick="window.open('https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/Home?:iid=4','_blank')">
         <div>
-          <div class="card-title">Account Info</div>
+          <div class="card-title">Account Information</div>
           <div class="card-sub">Detailed metadata</div>
         </div>
       </div>
 
-    </div><!-- /.cards-top -->
+    </div>
 
-  </section><!-- /.hero -->
-
-</div><!-- /.container -->
+  </section>
+</div>
 
 <script>
-/* Dropdown toggle (no scroll, overlay menu) */
 function toggleSub(id){
   const card = document.getElementById(id);
   const isOpen = card.classList.contains("open");
-
-  document.querySelectorAll(".card-nav.open").forEach(c=>{
-    c.classList.remove("open");
-  });
-
-  if(!isOpen){ card.classList.add("open"); }
+  document.querySelectorAll(".card-nav.open").forEach(c=>c.classList.remove("open"));
+  if(!isOpen){
+    card.classList.add("open");
+  }
 }
 
-/* Close dropdown on outside click */
 document.addEventListener("click", e=>{
   if(!e.target.closest(".card-nav")){
     document.querySelectorAll(".card-nav.open").forEach(c=>c.classList.remove("open"));
   }
 });
 
-/* Close on ESC */
 document.addEventListener("keydown", e=>{
   if(e.key==="Escape"){
     document.querySelectorAll(".card-nav.open").forEach(c=>c.classList.remove("open"));
