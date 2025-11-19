@@ -38,7 +38,7 @@ body{
 }
 
 /* ---------------------------------------
-   ✔ BACKGROUND IMAGE
+   ✔ Background Image
    --------------------------------------- */
 .bg{
   position:fixed; inset:0; z-index:0;
@@ -50,7 +50,7 @@ body{
 }
 
 /* ---------------------------------------
-   ✔ CONTAINER
+   ✔ PAGE CONTAINER
    --------------------------------------- */
 .container{
   position:relative;
@@ -58,6 +58,27 @@ body{
   max-width:1280px;
   margin:20px auto;
   padding:22px;
+}
+
+/* ---------------------------------------
+   ✔ Top Right Ericsson Logo
+   --------------------------------------- */
+.logo-top-right {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 3;
+}
+
+.logo-top-right img {
+  height: 55px;
+  opacity: 0.95;
+}
+
+@media (max-width:600px) {
+  .logo-top-right img {
+    height: 40px;
+  }
 }
 
 /* ---------------------------------------
@@ -86,7 +107,7 @@ body{
 }
 
 /* ---------------------------------------
-   ✔ HERO SECTION
+   ✔ HERO BOX
    --------------------------------------- */
 .hero{
   background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.20));
@@ -120,7 +141,7 @@ body{
 }
 
 /* ---------------------------------------
-   ✔ CARD
+   ✔ CARD STYLE
    --------------------------------------- */
 .card-nav{
   flex:1 1 0;
@@ -179,7 +200,7 @@ body{
 }
 
 /* ---------------------------------------
-   ✔ SUBMENU (DROPDOWN)
+   ✔ SUBMENU (Dropdown)
    --------------------------------------- */
 .submenu{
   position:absolute;
@@ -223,17 +244,6 @@ body{
   color:#fff !important;
 }
 
-/* ---------------------------------------
-   ✔ RESPONSIVE
-   --------------------------------------- */
-@media (max-width:900px){
-  .card-nav{ min-width:200px; }
-  .h-title{ font-size:44px; }
-}
-@media (max-width:600px){
-  .h-title{ font-size:32px; }
-  .card-title{ font-size:18px; }
-}
 </style>
 </head>
 
@@ -242,6 +252,11 @@ body{
 <div class="bg"></div>
 
 <div class="container">
+
+  <!-- ✔ Ericsson Logo Top Right -->
+  <div class="logo-top-right">
+    <img src="https://raw.githubusercontent.com/jayanansharma02/EricsTableau/e60861eeda9e89b8a3ed0b8099b70d5b923c40e0/Ericsson%20Logo%201.png" alt="Ericsson Logo">
+  </div>
 
   <div class="topline">
     <div class="badge">Live Dashboard</div>
@@ -254,7 +269,6 @@ body{
     <div class="h-sub">Standard Benchmarking Template — Live insights, trends & impact</div>
 
     <div class="cards-top">
-
 
       <!-- KPI YOY -->
       <div class="card-nav" id="kpi-card"
@@ -275,7 +289,6 @@ body{
         </div>
       </div>
 
-
       <!-- Trending -->
       <div class="card-nav" id="trend-card"
         onclick="window.open('https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/Trending_and_Ranking/Home?:iid=3','_blank')">
@@ -290,11 +303,10 @@ body{
         </div>
 
         <div class="submenu" id="trend-sub">
-          <a href="#" target="_blank">Trending & Ranking — MEMA</a>
-          <a href="#" target="_blank">Trending & Ranking — MOAI</a>
+          <a href="#" target="_blank">Trending — MEMA</a>
+          <a href="#" target="_blank">Trending — MOAI</a>
         </div>
       </div>
-
 
       <!-- Footprint -->
       <div class="card-nav"
@@ -306,8 +318,7 @@ body{
         </div>
       </div>
 
-
-      <!-- Ericsson Impact -->
+      <!-- Impact -->
       <div class="card-nav"
         onclick="window.open('https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/EricssonImpact/Home?:iid=2','_blank')">
 
@@ -317,8 +328,7 @@ body{
         </div>
       </div>
 
-
-      <!-- Account Information -->
+      <!-- Account Info -->
       <div class="card-nav"
         onclick="window.open('https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/Home?:iid=4','_blank')">
 
@@ -328,26 +338,27 @@ body{
         </div>
       </div>
 
-
     </div>
+
   </section>
 </div>
 
 <script>
-/* Toggle dropdown */
 function toggleSub(id){
   const card = document.getElementById(id);
   const isOpen = card.classList.contains("open");
   document.querySelectorAll(".card-nav.open").forEach(c=>c.classList.remove("open"));
-  if(!isOpen){ card.classList.add("open"); }
+  if(!isOpen) card.classList.add("open");
 }
 
-/* Close when clicking outside or ESC */
+/* Close menu when clicking outside */
 document.addEventListener("click", e=>{
   if(!e.target.closest(".card-nav")){
     document.querySelectorAll(".card-nav.open").forEach(c=>c.classList.remove("open"));
   }
 });
+
+/* ESC closes */
 document.addEventListener("keydown", e=>{
   if(e.key==="Escape"){
     document.querySelectorAll(".card-nav.open").forEach(c=>c.classList.remove("open"));
