@@ -55,9 +55,9 @@ body{
 .container{
   position:relative;
   z-index:2;
-  max-width:1500px;       /* was 1280px, now wider */
-  margin:0 auto;          /* center horizontally */
-  padding:20px 30px;      /* some space on both sides */
+  max-width:1500px;       /* wider */
+  margin:0 auto;
+  padding:20px 30px;
 }
 
 /* ---------------------------------------
@@ -82,28 +82,38 @@ body{
 }
 
 /* ---------------------------------------
-   ✔ TOP BAR
+   ✔ TOP BAR  (brand center, badge left)
    --------------------------------------- */
 .topline{
+  position:relative;
   display:flex;
   align-items:center;
-  gap:18px;
-  margin-bottom:12px;
+  margin-bottom:16px;
+  min-height:56px;
 }
 
+/* Live Dashboard badge on left */
 .badge{
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
   background:var(--accent);
   color:#111;
   padding:10px 18px;
   border-radius:10px;
   font-weight:800;
   box-shadow:0 8px 28px rgba(255,140,10,0.28);
+  white-space:nowrap;
 }
 
+/* Brand text perfectly centered */
 .brand{
-  font-weight:600;
-  font-size:18px;
-  opacity:0.95;
+  flex:1;
+  text-align:center;
+  font-weight:700;
+  font-size:42px;
+  opacity:1;
 }
 
 /* ---------------------------------------
@@ -117,23 +127,27 @@ body{
   box-shadow:0 12px 40px rgba(0,0,0,0.55);
 }
 
+/* (h-title not used now, but kept if needed later) */
 .h-title{
   font-size:clamp(30px,4vw,64px);
   margin:0;
   font-weight:800;
   line-height:0.95;
 }
+
+/* 👉 Bigger & bolder subtitle as main heading */
 .h-sub{
-  margin-top:10px;
-  font-size:clamp(14px,2vw,20px);
-  color:rgba(255,255,255,0.9);
+  margin-top:0;
+  font-size:clamp(20px,3vw,30px);
+  font-weight:800;
+  color:#ffffff;
 }
 
 /* ---------------------------------------
    ✔ CARD ROW (TOP NAV CARDS)
    --------------------------------------- */
 .cards-top{
-  margin-top:28px;
+  margin-top:24px;
   display:flex;
   gap:18px;
   flex-wrap:wrap;
@@ -254,7 +268,7 @@ body{
   border:1px solid rgba(255,255,255,0.05);
   box-shadow:0 10px 32px rgba(0,0,0,0.6);
   padding:22px 24px 20px;
-  width:100%; /* ensure it uses full container width */
+  width:100%;
 }
 
 .explainer-header{
@@ -341,14 +355,15 @@ body{
     <img src="https://raw.githubusercontent.com/jayanansharma02/EricsTableau/e60861eeda9e89b8a3ed0b8099b70d5b923c40e0/Ericsson%20Logo%201.png" alt="Ericsson Logo">
   </div>
 
+  <!-- ⭐ Top bar: brand centered, badge left -->
   <div class="topline">
-    <div class="badge">Live Dashboard</div>
     <div class="brand">Ericsson Managed Services</div>
+    <div class="badge">Live Dashboard</div>
   </div>
 
   <section class="hero">
 
-    <h1 class="h-title">Ericsson Managed Services</h1>
+    <!-- Main tagline -->
     <div class="h-sub">Standard Benchmarking Template — Live insights, trends & impact</div>
 
     <div class="cards-top">
@@ -438,7 +453,6 @@ body{
       <div class="expl-card">
         <h3 class="expl-card-title">KPI Comparison YOY</h3>
         <ul class="expl-card-text">
-          <li>View KPI values per customer for multiple years</li>
           <li>Compare current year vs previous year performance</li>
           <li>Check KPI rankings and rank movement YoY</li>
           <li>Identify improvement or decline in KPI trends</li>
@@ -451,7 +465,6 @@ body{
         <h3 class="expl-card-title">Trending &amp; Ranking</h3>
         <ul class="expl-card-text">
           <li>View KPI trends for multiple customers over time</li>
-          <li>Compare performance versus global peers</li>
           <li>Check ranking movements across selected periods</li>
           <li>Flexible granularity: Monthly, Quarterly, Half-yearly, or Yearly</li>
           <li>Quickly identify improvements and declines</li>
@@ -464,8 +477,7 @@ body{
         <ul class="expl-card-text">
           <li>Domain-wise node count overview across the network</li>
           <li>Vendor-wise breakdown for RAN logical nodes</li>
-          <li>Alarm projections for the upcoming year</li>
-          <li>Forecasted Corrective Work Orders to anticipate workload</li>
+          <li>Alarm and WO projections for the upcoming year</li>
           <li>Supports planning and operational resource allocation</li>
         </ul>
       </div>
@@ -475,7 +487,6 @@ body{
         <h3 class="expl-card-title">Ericsson Impact</h3>
         <ul class="expl-card-text">
           <li>Compares KPI performance across 3 delivery categories</li>
-          <li>Shows automation-driven improvements in critical network KPIs</li>
           <li>Highlights gains in availability, throughput & customer experience KPIs</li>
           <li>Displays reduced faults & faster service restoration in enhanced delivery</li>
           <li>Helps quantify the impact of Ericsson’s operational excellence journey</li>
@@ -490,7 +501,6 @@ body{
           <li>Demonstrates automation impact</li>
           <li>Highlights operational efficiency gains</li>
           <li>Shows improved network outcomes</li>
-          <li>Reflects enhanced customer experience</li>
         </ul>
       </div>
 
