@@ -130,7 +130,7 @@ body{
 }
 
 /* ---------------------------------------
-   ✔ CARD ROW
+   ✔ CARD ROW (TOP NAV CARDS)
    --------------------------------------- */
 .cards-top{
   margin-top:28px;
@@ -244,6 +244,83 @@ body{
   color:#fff !important;
 }
 
+/* ---------------------------------------
+   ✔ BOTTOM EXPLAINER SECTION
+   --------------------------------------- */
+.explainer{
+  margin-top:26px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.25));
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.05);
+  box-shadow:0 10px 32px rgba(0,0,0,0.6);
+  padding:22px 24px 20px;
+}
+
+.explainer-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.explainer-title{
+  font-size:20px;
+  font-weight:800;
+}
+
+.explainer-sub{
+  font-size:13px;
+  color:rgba(255,255,255,0.8);
+}
+
+/* grid of description cards */
+.explainer-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:16px;
+}
+
+.expl-card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.3));
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.06);
+  padding:14px 16px;
+}
+
+.expl-card-title{
+  font-size:16px;
+  font-weight:800;
+  color:var(--accent);
+  margin:0 0 6px 0;
+}
+
+/* can be <p> or <ul> */
+.expl-card-text{
+  font-size:13px;
+  line-height:1.5;
+  color:rgba(255,255,255,0.92);
+  margin:0;
+  padding-left:18px;
+}
+.expl-card-text li{
+  margin-bottom:4px;
+}
+
+/* 👇 NEW Footer Contact Text */
+.support-note{
+  text-align:right;
+  font-size:13px;
+  margin-top:18px;
+  color:rgba(255,255,255,0.78);
+}
+
+/* responsive for explainer section */
+@media (max-width:900px){
+  .explainer-grid{
+    grid-template-columns:1fr;
+  }
+}
 </style>
 </head>
 
@@ -341,7 +418,89 @@ body{
     </div>
 
   </section>
-</div>
+
+  <!-- ⭐ Bottom explainer section -->
+  <section class="explainer">
+    <div class="explainer-header">
+      <div class="explainer-title">What each dashboard shows</div>
+      <div class="explainer-sub">Quick guide to help you choose the right view.</div>
+    </div>
+
+    <div class="explainer-grid">
+
+      <!-- KPI YOY description -->
+      <div class="expl-card">
+        <h3 class="expl-card-title">KPI Comparison YOY</h3>
+        <ul class="expl-card-text">
+          <li>View KPI values per customer for multiple years</li>
+          <li>Compare current year vs previous year performance</li>
+          <li>Check KPI rankings and rank movement YoY</li>
+          <li>Identify improvement or decline in KPI trends</li>
+          <li>Supports year-over-year business performance decisions</li>
+        </ul>
+      </div>
+
+      <!-- Trending & Ranking description -->
+      <div class="expl-card">
+        <h3 class="expl-card-title">Trending &amp; Ranking</h3>
+        <ul class="expl-card-text">
+          <li>View KPI trends for multiple customers over time</li>
+          <li>Compare performance versus global peers</li>
+          <li>Check ranking movements across selected periods</li>
+          <li>Flexible granularity: Monthly, Quarterly, Half-yearly, or Yearly</li>
+          <li>Quickly identify improvements and declines</li>
+                  </ul>
+
+      </div>
+
+      <!-- Footprint description -->
+      <div class="expl-card">
+        <h3 class="expl-card-title">FootPrint</h3>
+        <ul class="expl-card-text">
+          <li>Domain-wise node count overview across the network</li>
+          <li>Vendor-wise breakdown for RAN logical nodes</li>
+          <li>Alarm projections for the upcoming year</li>
+          <li>Forecasted Corrective Work Orders to anticipate workload</li>
+          <li>Supports planning and operational resource allocation</li>
+                  </ul>
+
+      </div>
+
+      <!-- Ericsson Impact description -->
+      <div class="expl-card">
+        <h3 class="expl-card-title">Ericsson Impact</h3>
+         <ul class="expl-card-text">
+          <li>Compares KPI performance across 3 delivery categories</li>
+          <li>Shows automation-driven improvements in critical network KPIs</li>
+          <li>Highlights gains in availability, throughput & customer experience KPIs</li>
+          <li>Displays reduced faults & faster service restoration in enhanced delivery</li>
+          <li>Helps quantify the impact of Ericsson’s operational excellence journey</li>
+         </ul>
+
+      </div>
+
+      <!-- Account Information description -->
+      <div class="expl-card">
+        <h3 class="expl-card-title">Account Information</h3>
+        <ul class="expl-card-text">
+          <li>Showcases the transformation scope — subscribers, sites, calls, and core nodes managed</li>
+          <li>Demonstrates automation impact</li>
+          <li>Highlights operational efficiency gains</li>
+          <li>Shows improved network outcomes</li>
+          <li>Reflects enhanced customer experience</li>
+         </ul>
+
+      </div>
+
+    </div>
+<!-- 📌 Contact Support Footer -->
+    <div class="support-note">
+      For any queries, please reach out: 
+      <a href="mailto:abc@ericsson.com">abc@ericsson.com</a>
+    </div>
+  </section>
+
+</div> <!-- /container -->
 
 <script>
 function toggleSub(id){
