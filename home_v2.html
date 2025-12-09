@@ -3,15 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Ericsson Managed Services — Homepage</title>
-
-<!-- Lato fallback font -->
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<title>Ericsson Managed Services — Compact Option Cards</title>
 
 <style>
-/* ---------------------------------------
-   ✔ CUSTOM FONT: ERICSSON HILDA (WOFF)
-   --------------------------------------- */
+/* Ericsson Hilda (WOFF) */
 @font-face {
   font-family: 'Ericsson Hilda';
   src: url('https://raw.githubusercontent.com/jayanansharma02/EricsTableau/cd6fe1050629981c5670646568128dbdea8405b0/EricssonHilda-Regular.woff') format('woff');
@@ -20,522 +15,769 @@
   font-display: swap;
 }
 
-/* ---------------------------------------
-   ✔ THEME VARIABLES
-   --------------------------------------- */
 :root{
   --accent:#FF8C0A;
-  --bg:#0f1724;
-  --card-radius:14px;
+  --bg:#000000;
+  --card-border: rgba(255,255,255,0.24);
+  --muted: rgba(255,255,255,0.78);
+  --title-max: 18px;
+  --title-min: 11px;
+  --actions-w:72px;
+  --transition-speed: 320ms;
 }
 *{box-sizing:border-box}
+html,body{height:100%}
+
 body{
   margin:0;
   font-family:'Ericsson Hilda';
-  background:var(--bg);
-  color:#fff;
+  background:
+    #020617
+    url("https://raw.githubusercontent.com/jayanansharma02/EricsTableau/ffe87840260b308d72f5300d771d32d877bf105f/Adobe%20Express_3000x1800.png")
+    center no-repeat fixed;
+  background-size: 7000px;
+  
   -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
 
-/* ---------------------------------------
-   ✔ Background Image
-   --------------------------------------- */
-.bg{
-  position:fixed; inset:0; z-index:0;
-  background-image:url("https://raw.githubusercontent.com/jayanansharma02/EricsTableau/bbcec9e1b09b4a3b1c2d1214b11cce5fba36ffd4/resized_1500x1000.jpg");
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  filter:brightness(0.32);
-}
-
-/* ---------------------------------------
-   ✔ PAGE CONTAINER (WIDER, WITH SIDE SPACE)
-   --------------------------------------- */
+/* ---------- Page container ---------- */
 .container{
   position:relative;
-  z-index:2;
-  max-width:1500px;       /* wider */
-  margin:0 auto;
-  padding:20px 30px;
+  z-index:1;
+  max-width:1400px;
+  margin:28px auto;  
+  padding:28px;
 }
-
-/* ---------------------------------------
-   ✔ Top Right Ericsson Logo
-   --------------------------------------- */
-.logo-top-right {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  z-index: 3;
-}
-
-.logo-top-right img {
-  height: 55px;
-  opacity: 0.95;
-}
-
-@media (max-width:600px) {
-  .logo-top-right img {
-    height: 40px;
-  }
-}
-
-/* ---------------------------------------
-   ✔ TOP BAR  (brand center, badge left)
-   --------------------------------------- */
-.topline{
-  position:relative;
-  display:flex;
-  align-items:center;
-  margin-bottom:16px;
-  min-height:56px;
-}
-
-/* Live Dashboard badge on left */
-.badge{
+.logo-top-right{
   position:absolute;
-  left:0;
-  top:50%;
-  transform:translateY(-50%);
+  top:22px;
+  right:22px;
+  z-index:20;
+}
+.logo-top-right img{
+  height:56px;
+  filter:drop-shadow(0 10px 24px rgba(0,0,0,0.55));
+}
+
+/* ---------- Topline (badge left, brand center) ---------- */
+.topline{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  margin-bottom:14px;
+}
+.badge{
+  justify-self:start;
   background:var(--accent);
   color:#111;
   padding:10px 18px;
-  border-radius:10px;
-  font-weight:800;
-  box-shadow:0 8px 28px rgba(255,140,10,0.28);
-  white-space:nowrap;
+  border-radius:12px;
+  font-weight:900;
+  box-shadow:0 12px 40px rgba(0,0,0,0.45);
 }
-
-/* Brand text perfectly centered */
 .brand{
-  flex:1;
-  text-align:center;
+  justify-self:center;
+  color:white;
   font-weight:700;
-  font-size:42px;
-  opacity:1;
+  font-size:48px;
+  opacity:0.98;
+  text-align:center;
 }
 
-/* ---------------------------------------
-   ✔ HERO BOX
-   --------------------------------------- */
+/* ---------- HERO (Standard Benchmarking Template box) ---------- */
 .hero{
-  background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.20));
-  padding:36px;
+  margin-top:10px;
+  background:rgba(2,6,23,0.1);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
   border-radius:18px;
-  border:1px solid rgba(255,255,255,0.05);
-  box-shadow:0 12px 40px rgba(0,0,0,0.55);
+  padding:72px 36px 88px;  /* taller */
+  min-height:420px;        /* extra height */
+  border:1px solid rgba(255,255,255,0.26);
+  box-shadow:0 18px 60px rgba(0,0,0,0.88);
+  text-align:left;
 }
-
-/* (h-title not used now, but kept if needed later) */
+.hero-inner{ max-width:1180px; margin:0 auto; }
 .h-title{
-  font-size:clamp(30px,4vw,64px);
+  font-size:clamp(40px, 6.5vw, 96px);
   margin:0;
-  font-weight:800;
-  line-height:0.95;
+  font-weight:900;
+  line-height:0.92;
+  color:white;
+  text-shadow:0 14px 44px rgba(0,0,0,0.9);
 }
-
-/* 👉 Bigger & bolder subtitle as main heading */
 .h-sub{
-  margin-top:0;
-  font-size:clamp(20px,3vw,30px);
-  font-weight:800;
-  color:#ffffff;
+  margin-top:8px;
+  font-size:18px;
+  color:rgba(255,255,255,0.92);
+  font-weight:700;
 }
 
-/* ---------------------------------------
-   ✔ CARD ROW (TOP NAV CARDS)
-   --------------------------------------- */
+/* ---------- Cards row ---------- */
 .cards-top{
-  margin-top:24px;
+  margin-top:0;
+  padding-top:60px;
   display:flex;
-  gap:18px;
-  flex-wrap:wrap;
-  align-items:stretch;
+  gap:24px;
+  align-items:flex-start;
+  justify-content:space-between;
+  flex-wrap:nowrap;
+  overflow-x:hidden;
+  padding-bottom:6px;
+  box-sizing:border-box;
 }
+.cards-top::-webkit-scrollbar{ height:0; background:transparent; }
 
-/* ---------------------------------------
-   ✔ CARD STYLE
-   --------------------------------------- */
-.card-nav{
+/* ---------- OPTION CARDS ---------- */
+.option-card{
+  background:transparent;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  border-radius:14px;
+  padding:14px 16px;
+
   flex:1 1 0;
-  min-width:160px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.15));
-  border:1px solid rgba(255,255,255,0.06);
-  border-radius:var(--card-radius);
-  padding:18px;
-  position:relative;
-  box-shadow:0 8px 28px rgba(0,0,0,0.48);
+  min-width:0;
+  max-width:none;
+
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
-  transition:transform .14s ease;
+  justify-content:center;
+  gap:6px;
+  border:1px solid var(--card-border);
+  box-shadow:0 8px 24px rgba(0,0,0,0.65);
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.option-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 50px rgba(0,0,0,0.9);
   cursor:pointer;
 }
-.card-nav:hover{
-  transform:translateY(-4px);
-}
-
-.card-title{
-  font-size:clamp(16px,1.8vw,20px);
-  font-weight:800;
-  color:var(--accent);
-  margin:0;
-  line-height:1.1;
-}
-
-.card-sub{
-  font-size:clamp(12px,1.4vw,15px);
-  margin-top:8px;
-  color:rgba(255,255,255,0.92);
-  font-weight:500;
-}
-
-.card-top-row{
+.option-title-row{
   display:flex;
+  align-items:center;
   justify-content:space-between;
-  align-items:flex-start;
-  gap:12px;
+  gap:10px;
+  width:100%;
 }
-
-/* ---------------------------------------
-   ✔ CHEVRON BUTTON
-   --------------------------------------- */
-.chev-btn{
-  background:transparent;
-  border:0;
+.option-title{
   color:var(--accent);
-  font-weight:800;
-  font-size:18px;
-  cursor:pointer;
-  width:36px;
-  height:36px;
-  border-radius:8px;
+  font-weight:900;
+  font-size:var(--title-max);
+  margin:0;
+  line-height:1.05;
+  white-space:nowrap;
+  overflow:visible;
+  text-overflow:unset;
+  max-width:calc(100% - 56px);
+  display:inline-block;
 }
-
-/* ---------------------------------------
-   ✔ SUBMENU (Dropdown)
-   --------------------------------------- */
-.submenu{
-  position:absolute;
-  left:12px;
-  right:12px;
-  top:100%;
-  margin-top:10px;
-  display:none;
-  z-index:9999;
-  background:linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.95)); /* darker */
-  border:1px solid rgba(255,255,255,0.10);
-  padding:10px;
+.option-title a{
+  color:var(--accent);
+  text-decoration:none;
+}
+.option-title a:hover{
+  text-decoration:underline;
+}
+.option-chevron{
+  width:34px;
+  height:34px;
   border-radius:10px;
-  box-shadow:0 20px 60px rgba(0,0,0,0.75);
+  background:rgba(2,6,23,0.3);
+  border:1px solid rgba(255,255,255,0.3);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--accent);
+  flex-shrink:0;
 }
 
-.card-nav.open .submenu{
-  display:block;
+/* ---------- TOP GUIDE (What each dashboard shows) ---------- */
+.top-guide{
+  margin-top:26px;
+  background:rgba(2,6,23,0.3);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-radius:14px;
+  padding:16px;
+  border:1px solid rgba(255,255,255,0.10);
+  box-shadow:0 14px 40px rgba(0,0,0,0.80);
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  justify-content:space-between;
+}
+.top-guide .left{
+  flex:1 1 auto;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+}
+.top-guide h2{
+  margin:0 0 6px 0;
+  color:var(--accent);
+  font-weight:900;
+  font-size:20px;
+}
+.guide-details{
+  overflow:hidden;
+  transition:max-height var(--transition-speed) ease, opacity var(--transition-speed) ease;
+  max-height:1200px;
+  opacity:1;
+  margin-top:6px;
+}
+.top-guide.collapsed .guide-details{
+  max-height:0;
+  opacity:0;
+  margin-top:0;
+}
+.top-guide p{
+  margin:0 0 8px 0;
+  color:rgba(255,255,255,0.92);
+  font-weight:700;
+}
+.guide-grid{
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+  flex-wrap:nowrap;
+  width:100%;
+  overflow:hidden;
+  margin-top:12px;
+}
+.expl-card{
+  background:transparent;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  border-radius:10px;
+  padding:16px;
+  border:1px solid rgba(255,255,255,0.24);
+  box-shadow:0 8px 24px rgba(0,0,0,0.6);
+
+  flex:1 1 0;
+  min-width:0;
+  max-width:none;
+
+  display:flex;
+  flex-direction:column;
+}
+.expl-card-title{
+  margin:0 0 8px 0;
+  color:var(--accent);
+  font-weight:1000;
+  font-size:20px;
+}
+.expl-card-text{
+  margin:0;
+  padding-left:18px;
+  font-size:13px;
+  line-height:1.36;
+  color:rgba(255,255,255,0.96);
+}
+.expl-card-text li{ margin-bottom:6px; }
+
+.actions{
+  width:var(--actions-w);
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-end;
+}
+.collapse-btn{
+  --pad-x:12px; --pad-y:8px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:var(--pad-y) var(--pad-x);
+  border-radius:999px;
+  background:rgba(2,6,23,0.3);
+  color:#fff;
+  font-weight:800;
+  font-size:12px;
+  border:1px solid rgba(255,255,255,0.3);
+  cursor:pointer;
+}
+.collapse-btn svg{
+  width:14px;
+  height:14px;
+  transform-origin:center;
+  transition:transform var(--transition-speed) ease;
+}
+.top-guide.collapsed .collapse-btn svg{
+  transform:rotate(180deg);
 }
 
-.submenu a{
+/* Floating submenu */
+.submenu{ display:none; }
+#floatingSub{
+  position:fixed;
+  z-index:99999;
+  display:none;
+  min-width:220px;
+  background:rgba(2,6,23,0.3);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid var(--card-border);
+  padding:10px;
+  border-radius:12px;
+  box-shadow:0 26px 80px rgba(0,0,0,0.98);
+
+  /* make submenu vertically scrollable */
+  max-height:320px;
+  overflow-y:auto;
+  overflow-x:hidden;
+
+  /* Firefox scrollbar colors */
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,0.4) transparent;
+}
+
+/* 🔹 Transparent track + white thumb for DROPDOWN SCROLLBAR */
+#floatingSub::-webkit-scrollbar{
+  width:6px;
+}
+#floatingSub::-webkit-scrollbar-track{
+  background:transparent;          /* transparent background as requested */
+}
+#floatingSub::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,0.4); /* visible thumb */
+  border-radius:999px;
+}
+
+#floatingSub a{
   display:block;
   padding:10px 12px;
   border-radius:8px;
   background:rgba(255,255,255,0.02);
-  color:#fff;
-  font-weight:700;
+  color:var(--accent);          /* same as main menu text */
   text-decoration:none;
-  border:1px solid rgba(255,255,255,0.03);
+  font-weight:700;
   margin-bottom:8px;
 }
-
-.submenu a:last-child{ margin-bottom:0; }
-
-.submenu a:hover,
-.submenu a:active,
-.submenu a:focus {
-  background:linear-gradient(180deg, rgba(255,140,10,0.12), rgba(255,140,10,0.05));
-  border-color:rgba(255,140,10,0.22);
-  transform:translateY(-2px);
-  color:#fff !important;
-}
-
-/* ---------------------------------------
-   ✔ BOTTOM EXPLAINER SECTION
-   --------------------------------------- */
-.explainer{
-  margin-top:26px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.25));
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,0.05);
-  box-shadow:0 10px 32px rgba(0,0,0,0.6);
-  padding:22px 24px 20px;
-  width:100%;
-}
-
-.explainer-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:baseline;
-  gap:12px;
-  margin-bottom:16px;
-}
-
-.explainer-title{
-  font-size:20px;
-  font-weight:800;
-}
-
-.explainer-sub{
-  font-size:13px;
-  color:rgba(255,255,255,0.8);
-}
-
-/* grid of description cards */
-.explainer-grid{
-  display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  gap:16px;
-}
-
-.expl-card{
-  background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.3));
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,0.06);
-  padding:14px 16px;
-}
-
-.expl-card-title{
-  font-size:16px;
-  font-weight:800;
+#floatingSub a:hover{
+  background:rgba(255,255,255,0.06);
   color:var(--accent);
-  margin:0 0 6px 0;
 }
 
-/* can be <p> or <ul> */
-.expl-card-text{
-  font-size:13px;
-  line-height:1.5;
-  color:rgba(255,255,255,0.92);
-  margin:0;
-  padding-left:18px;
-}
-.expl-card-text li{
-  margin-bottom:4px;
-}
-
-/* Footer Contact Text */
-.support-note{
-  text-align:right;
-  font-size:13px;
-  margin-top:0px;
-  color:rgba(255,255,255,0.78);
-}
-
-.support-note a{
-  color:var(--accent);
-  text-decoration:none;
-}
-
-/* responsive for explainer section */
-@media (max-width:900px){
-  .explainer-grid{
-    grid-template-columns:1fr;
+/* ---------- Responsive ---------- */
+@media (max-width:980px){
+  .cards-top{
+    flex-wrap:wrap;
+    gap:16px;
+    overflow-x:visible;
+    padding:12px;
   }
+  .option-card{
+    flex:1 1 48%;
+    min-width:220px;
+  }
+}
+@media (max-width:420px){
+  .option-title{ max-width:calc(100% - 44px); }
+}
+@media (max-width:780px){
+  .guide-grid{ flex-wrap:wrap; gap:12px; }
+  .expl-card{ flex:1 1 48%; min-width:160px; }
+  .actions{ width:56px; }
 }
 </style>
 </head>
-
 <body>
 
-<div class="bg"></div>
+  <div class="container">
+    <div class="logo-top-right" aria-hidden="true">
+      <img src="https://raw.githubusercontent.com/jayanansharma02/EricsTableau/e60861eeda9e89b8a3ed0b8099b70d5b923c40e0/Ericsson%20Logo%201.png" alt="Ericsson logo">
+    </div>
 
-<div class="container">
+    <div class="topline">
+      <div class="badge">Live Dashboard</div>
+      <div class="brand">Ericsson Managed Services</div>
+    </div>
 
-  <!-- ✔ Ericsson Logo Top Right -->
-  <div class="logo-top-right">
-    <img src="https://raw.githubusercontent.com/jayanansharma02/EricsTableau/e60861eeda9e89b8a3ed0b8099b70d5b923c40e0/Ericsson%20Logo%201.png" alt="Ericsson Logo">
-  </div>
+    <!-- HERO FIRST -->
+    <section class="hero" aria-label="Main hero area">
+      <div class="hero-inner">
+        <h1 class="h-title">Standard Benchmarking Template</h1>
+        <div class="h-sub">Live insights, trends & impact — quick actions and highlights</div>
 
-  <!-- ⭐ Top bar: brand centered, badge left -->
-  <div class="topline">
-    <div class="brand">Ericsson Managed Services</div>
-    <div class="badge">Live Dashboard</div>
-  </div>
+        <div class="cards-top" role="navigation" aria-label="Primary dashboard shortcuts">
 
-  <section class="hero">
-
-    <!-- Main tagline -->
-    <div class="h-sub">Standard Benchmarking Template — Live insights, trends & impact</div>
-
-    <div class="cards-top">
-
-      <!-- KPI YOY -->
-      <div class="card-nav" id="kpi-card"
-        onclick="window.open('https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/KPI_Comparison_YOY/Home?:iid=2','_blank')">
-
-        <div class="card-top-row">
-          <div>
-            <div class="card-title">KPI Comparison YOY</div>
-            <div class="card-sub">Compare across years</div>
+          <!-- KPI Comparison YOY -->
+          <div class="option-card" id="kpi-card" role="button" tabindex="0" aria-label="KPI Comparison YOY">
+            <div class="option-title-row">
+              <h3 class="option-title">
+                <!-- TEXT CLICK -> HOME LINK -->
+                <a
+                  href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/KPI_Comparison_YOY/Home"
+                  class="title-link"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  KPI Comparison YOY
+                </a>
+              </h3>
+              <!-- CHEVRON CLICK -> DROPDOWN -->
+              <div class="option-chevron" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="submenu" id="kpi-sub">
+              <a href="#" target="_blank" rel="noopener">KPI Comparison YOY — MEMA</a>
+              <a href="#" target="_blank" rel="noopener">KPI Comparison YOY — MOAI</a>
+            </div>
           </div>
 
-          <button class="chev-btn" onclick="event.stopPropagation(); toggleSub('kpi-card')">▾</button>
-        </div>
-
-        <div class="submenu" id="kpi-sub">
-          <a href="#" target="_blank">KPI Comparison YOY — MEMA</a>
-          <a href="#" target="_blank">KPI Comparison YOY — MOAI</a>
-        </div>
-      </div>
-
-      <!-- Trending -->
-      <div class="card-nav" id="trend-card"
-        onclick="window.open('https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/Trending_and_Ranking/Home?:iid=3','_blank')">
-
-        <div class="card-top-row">
-          <div>
-            <div class="card-title">Trending & Ranking</div>
-            <div class="card-sub">Top movers & trends</div>
+          <!-- Trending & Ranking -->
+          <div class="option-card" id="trend-card" role="button" tabindex="0" aria-label="Trending & Ranking">
+            <div class="option-title-row">
+              <h3 class="option-title">
+                <a
+                  href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/Trending_and_Ranking/Home"
+                  class="title-link"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Trending &amp; Ranking
+                </a>
+              </h3>
+              <div class="option-chevron" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="submenu" id="trend-sub">
+              <a href="#" target="_blank" rel="noopener">Trending &amp; Ranking — MEMA</a>
+              <a href="#" target="_blank" rel="noopener">Trending &amp; Ranking — MOAI</a>
+            </div>
           </div>
 
-          <button class="chev-btn" onclick="event.stopPropagation(); toggleSub('trend-card')">▾</button>
-        </div>
+          <!-- FootPrint -->
+          <div class="option-card" id="foot-card" role="button" tabindex="0" aria-label="FootPrint">
+            <div class="option-title-row">
+              <h3 class="option-title">
+                <a
+                  href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/Footprint/Home?:iid=2"
+                  class="title-link"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  FootPrint
+                </a>
+              </h3>
+              <div class="option-chevron" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="submenu" id="foot-sub">
+              <a href="#" target="_blank" rel="noopener">FootPrint — SDU India</a>
+              <a href="#" target="_blank" rel="noopener">FootPrint — SDU Romania</a>
+	      <a href="#" target="_blank" rel="noopener">FootPrint — SDU MBNL</a>
+	      <a href="#" target="_blank" rel="noopener">FootPrint — SDU SNOC</a>
+            </div>
+          </div>
 
-        <div class="submenu" id="trend-sub">
-          <a href="#" target="_blank">Trending & Ranking — MEMA</a>
-          <a href="#" target="_blank">Trending & Ranking — MOAI</a>
+          <!-- Ericsson Impact -->
+          <div class="option-card" id="impact-card" role="button" tabindex="0" aria-label="Ericsson Impact">
+            <div class="option-title-row">
+              <h3 class="option-title">
+                <!-- Title -> main Ericsson Impact link (Version 1 as "home") -->
+                <a
+                  href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/EricssonImpact/Home?:iid=4"
+                  class="title-link"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Ericsson Impact
+                </a>
+              </h3>
+              <div class="option-chevron" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="submenu" id="impact-sub">
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/EricssonImpact/Version1?:iid=3">
+                Ericsson Impact — Version 1
+              </a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/EricssonImpact/Version2?:iid=3" target="_blank" rel="noopener">
+                Ericsson Impact — Version 2
+              </a>
+            </div>
+          </div>
+
+          <!-- Account Information -->
+          <div class="option-card" id="acct-card" role="button" tabindex="0" aria-label="Account Information">
+            <div class="option-title-row">
+              <h3 class="option-title">
+                <a
+                  href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/Home?:iid=1"
+                  class="title-link"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Account Information
+                </a>
+              </h3>
+              <div class="option-chevron" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="submenu" id="acct-sub">
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/BhartiIndia?:iid=1" target="_blank" rel="noopener">Account Info — Bharti India</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/CelcomDigi?:iid=2" target="_blank" rel="noopener">Account Info — Celcom Digi</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/DNBMalaysia?:iid=2" target="_blank" rel="noopener">Account Info — DNB Malaysia</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/MBNLUK?:iid=2" target="_blank" rel="noopener">Account Info — MBNL UK</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/MobilyKSA?:iid=2" target="_blank" rel="noopener">Account Info — Mobily KSA</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/NBNAustralia?:iid=2" target="_blank" rel="noopener">Account Info — NBN Australia</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/TelenetBelgium?:iid=2" target="_blank" rel="noopener">Account Info — Telenet Belgium</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/TDCDenmark?:iid=2" target="_blank" rel="noopener">Account Info — TDC Denmark</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/DTACThailand?:iid=2" target="_blank" rel="noopener">Account Info — TrueCo</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/STCKSA?:iid=2" target="_blank" rel="noopener">Account Info — STC KSA</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TOP-GUIDE BELOW HERO -->
+    <div id="topGuide" class="top-guide" role="region" aria-label="Dashboard guide" aria-expanded="true">
+      <div class="left">
+        <h2>What each dashboard shows</h2>
+        <p>Quick reference — key purpose, how to use, and when to open each view.</p>
+
+        <div id="guideDetails" class="guide-details">
+          <div class="guide-grid" aria-hidden="false">
+            <div class="expl-card">
+              <h3 class="expl-card-title">KPI Comparison YOY</h3>
+              <ul class="expl-card-text">
+                <li>Compare current year vs previous year performance</li>
+                <li>Check KPI rankings and rank movement YoY</li>
+                <li>Identify improvement or decline in KPI trends</li>
+                <li>Supports year-over-year business performance decisions</li>
+              </ul>
+            </div>
+
+            <div class="expl-card">
+              <h3 class="expl-card-title">Trending &amp; Ranking</h3>
+              <ul class="expl-card-text">
+                <li>View KPI trends for multiple customers over time</li>
+                <li>Check ranking movements across selected periods</li>
+                <li>Flexible granularity: Monthly, Quarterly, Half-yearly, or Yearly</li>
+                <li>Quickly identify improvements and declines</li>
+              </ul>
+            </div>
+
+            <div class="expl-card">
+              <h3 class="expl-card-title">FootPrint</h3>
+              <ul class="expl-card-text">
+                <li>Domain-wise node count overview across the network</li>
+                <li>Vendor-wise breakdown for RAN logical nodes</li>
+                <li>Alarm and WO projections for the upcoming year</li>
+                <li>Supports planning and operational resource allocation</li>
+              </ul>
+            </div>
+
+            <div class="expl-card">
+              <h3 class="expl-card-title">Ericsson Impact</h3>
+              <ul class="expl-card-text">
+                <li>Compares KPI performance across 3 delivery categories</li>
+                <li>Highlights gains in availability, throughput &amp; CX KPIs</li>
+                <li>Displays reduced faults &amp; faster service restoration</li>
+                <li>Helps quantify the impact of Ericsson’s operational excellence journey</li>
+              </ul>
+            </div>
+
+            <div class="expl-card">
+              <h3 class="expl-card-title">Account Information</h3>
+              <ul class="expl-card-text">
+                <li>Showcases the transformation scope — subscribers, sites, calls, and core nodes managed</li>
+                <li>Demonstrates automation impact</li>
+                <li>Highlights operational efficiency gains</li>
+                <li>Shows improved network outcomes</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Footprint -->
-      <div class="card-nav"
-        onclick="window.open('https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/Footprint/Home?:iid=1','_blank')">
-
-        <div>
-          <div class="card-title">FootPrint</div>
-          <div class="card-sub">Sites & coverage</div>
-        </div>
+      <div class="actions">
+        <button id="collapseGuideBtn" class="collapse-btn" aria-expanded="true" title="Collapse or expand guide">
+          <span class="btn-label">Collapse</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </button>
       </div>
-
-      <!-- Impact -->
-      <div class="card-nav"
-        onclick="window.open('https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/EricssonImpact/Home?:iid=2','_blank')">
-
-        <div>
-          <div class="card-title">Ericsson Impact</div>
-          <div class="card-sub">Automation outcomes</div>
-        </div>
-      </div>
-
-      <!-- Account Info -->
-      <div class="card-nav"
-        onclick="window.open('https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/Home?:iid=4','_blank')">
-
-        <div>
-          <div class="card-title">Account Information</div>
-          <div class="card-sub">Detailed metadata</div>
-        </div>
-      </div>
-
     </div>
 
-  </section>
+  </div>
 
-  <!-- ⭐ Bottom explainer section -->
-  <section class="explainer">
-    <div class="explainer-header">
-      <div class="explainer-title">What each dashboard shows</div>
-      <div class="explainer-sub">Quick guide to help you choose the right view.</div>
-    </div>
-
-    <div class="explainer-grid">
-
-      <!-- KPI YOY description -->
-      <div class="expl-card">
-        <h3 class="expl-card-title">KPI Comparison YOY</h3>
-        <ul class="expl-card-text">
-          <li>Compare current year vs previous year performance</li>
-          <li>Check KPI rankings and rank movement YoY</li>
-          <li>Identify improvement or decline in KPI trends</li>
-          <li>Supports year-over-year business performance decisions</li>
-        </ul>
-      </div>
-
-      <!-- Trending & Ranking description -->
-      <div class="expl-card">
-        <h3 class="expl-card-title">Trending &amp; Ranking</h3>
-        <ul class="expl-card-text">
-          <li>View KPI trends for multiple customers over time</li>
-          <li>Check ranking movements across selected periods</li>
-          <li>Flexible granularity: Monthly, Quarterly, Half-yearly, or Yearly</li>
-          <li>Quickly identify improvements and declines</li>
-        </ul>
-      </div>
-
-      <!-- Footprint description -->
-      <div class="expl-card">
-        <h3 class="expl-card-title">FootPrint</h3>
-        <ul class="expl-card-text">
-          <li>Domain-wise node count overview across the network</li>
-          <li>Vendor-wise breakdown for RAN logical nodes</li>
-          <li>Alarm and WO projections for the upcoming year</li>
-          <li>Supports planning and operational resource allocation</li>
-        </ul>
-      </div>
-
-      <!-- Ericsson Impact description -->
-      <div class="expl-card">
-        <h3 class="expl-card-title">Ericsson Impact</h3>
-        <ul class="expl-card-text">
-          <li>Compares KPI performance across 3 delivery categories</li>
-          <li>Highlights gains in availability, throughput & customer experience KPIs</li>
-          <li>Displays reduced faults & faster service restoration in enhanced delivery</li>
-          <li>Helps quantify the impact of Ericsson’s operational excellence journey</li>
-        </ul>
-      </div>
-
-      <!-- Account Information description -->
-      <div class="expl-card">
-        <h3 class="expl-card-title">Account Information</h3>
-        <ul class="expl-card-text">
-          <li>Showcases the transformation scope — subscribers, sites, calls, and core nodes managed</li>
-          <li>Demonstrates automation impact</li>
-          <li>Highlights operational efficiency gains</li>
-          <li>Shows improved network outcomes</li>
-        </ul>
-      </div>
-
-    </div>
-
-    <!-- 📌 Contact Support Footer -->
-    <div class="support-note">
-      For any queries, please reach out: 
-      <a href="mailto:abc@ericsson.com">abc@ericsson.com</a>
-    </div>
-  </section>
-
-</div> <!-- /container -->
+  <div id="floatingSub" role="menu" aria-hidden="true"></div>
 
 <script>
-function toggleSub(id){
-  const card = document.getElementById(id);
-  const isOpen = card.classList.contains("open");
-  document.querySelectorAll(".card-nav.open").forEach(c=>c.classList.remove("open"));
-  if(!isOpen) card.classList.add("open");
+/* Floating submenu for KPI, Trend, FootPrint, Impact, Account Info */
+let openCardId = null;
+const dropdownCardIds = ['kpi-card','trend-card','foot-card','impact-card','acct-card'];
+
+function toggleFloating(cardId){
+  if(!dropdownCardIds.includes(cardId)) return;
+  if(openCardId === cardId){ closeFloatingSub(); } else { openFloatingSub(cardId); }
 }
 
-/* Close menu when clicking outside */
-document.addEventListener("click", e=>{
-  if(!e.target.closest(".card-nav")){
-    document.querySelectorAll(".card-nav.open").forEach(c=>c.classList.remove("open"));
+function openFloatingSub(cardId){
+  const card = document.getElementById(cardId);
+  if(!card) return;
+  if(openCardId && openCardId !== cardId) closeFloatingSub();
+  const srcSub = card.querySelector('.submenu');
+  if(!srcSub) return;
+  const floating = document.getElementById('floatingSub');
+  floating.innerHTML = srcSub.innerHTML;
+  const rect = card.getBoundingClientRect();
+  const viewportW = window.innerWidth;
+  const width = Math.max(220, Math.min(420, rect.width + 40));
+  let left = rect.left + (rect.width/2) - (width/2);
+  if(left < 12) left = 12;
+  if(left + width > viewportW - 12) left = Math.max(12, viewportW - width - 12);
+  const top = rect.bottom + 8;
+  floating.style.minWidth = width + 'px';
+  floating.style.left = left + 'px';
+  floating.style.top = top + 'px';
+  floating.style.display = 'block';
+  floating.setAttribute('aria-hidden','false');
+  openCardId = cardId;
+  setTimeout(()=>{
+    document.addEventListener('click', onDocClick);
+    document.addEventListener('keydown', onKeyDown);
+    window.addEventListener('resize', closeFloatingSub);
+    window.addEventListener('scroll', closeFloatingSub, {passive:true});
+  },0);
+}
+
+function closeFloatingSub(){
+  const floating = document.getElementById('floatingSub');
+  if(!floating) return;
+  floating.style.display = 'none';
+  floating.setAttribute('aria-hidden','true');
+  floating.innerHTML = '';
+  openCardId = null;
+  document.removeEventListener('click', onDocClick);
+  document.removeEventListener('keydown', onKeyDown);
+  window.removeEventListener('resize', closeFloatingSub);
+  window.removeEventListener('scroll', closeFloatingSub);
+}
+
+function onDocClick(e){
+  const insideFloating = !!e.target.closest('#floatingSub');
+  const clickedDropdownCard = e.target.closest('#kpi-card, #trend-card, #foot-card, #impact-card, #acct-card');
+  if(insideFloating) return;
+  if(clickedDropdownCard) return;
+  closeFloatingSub();
+}
+function onKeyDown(e){
+  if(e.key === 'Escape') closeFloatingSub();
+}
+
+dropdownCardIds.forEach(id=>{
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.addEventListener('click', function(e){
+    // agar anchor pe click hai (title link),
+    // to dropdown mat kholna
+    if(e.target.closest('a')) return;
+    toggleFloating(this.id);
+  });
+  el.addEventListener('keydown', e=>{
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      toggleFloating(el.id);
+    }
+  });
+});
+
+document.getElementById('floatingSub').addEventListener('click', function(e){
+  const link = e.target.closest('a');
+  if(link) closeFloatingSub();
+});
+
+/* Collapse / Expand top guide */
+const topGuide = document.getElementById('topGuide');
+const collapseBtn = document.getElementById('collapseGuideBtn');
+
+function setCollapsed(collapsed){
+  if(collapsed){
+    topGuide.classList.add('collapsed');
+    collapseBtn.setAttribute('aria-expanded','false');
+    collapseBtn.querySelector('.btn-label').textContent = 'Expand';
+    topGuide.setAttribute('aria-expanded','false');
+  } else {
+    topGuide.classList.remove('collapsed');
+    collapseBtn.setAttribute('aria-expanded','true');
+    collapseBtn.querySelector('.btn-label').textContent = 'Collapse';
+    topGuide.setAttribute('aria-expanded','true');
+  }
+}
+let isCollapsed = true;
+setCollapsed(isCollapsed);
+
+collapseBtn.addEventListener('click', function(){
+  isCollapsed = !isCollapsed;
+  setCollapsed(isCollapsed);
+});
+collapseBtn.addEventListener('keydown', function(e){
+  if(e.key === ' ' || e.key === 'Enter'){
+    e.preventDefault();
+    collapseBtn.click();
   }
 });
 
-/* ESC closes */
-document.addEventListener("keydown", e=>{
-  if(e.key==="Escape"){
-    document.querySelectorAll(".card-nav.open").forEach(c=>c.classList.remove("open"));
+/* Title auto-scaling */
+(function(){
+  const TITLE_MAX = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--title-max')) || 18;
+  const TITLE_MIN = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--title-min')) || 11;
+
+  function fitTitleElement(titleEl){
+    if(!titleEl) return;
+    titleEl.style.fontSize = TITLE_MAX + 'px';
+    const row = titleEl.closest('.option-title-row');
+    if(!row) return;
+    const chevron = row.querySelector('.option-chevron');
+    const rowRect = row.getBoundingClientRect();
+    const chevronWidth = chevron ? chevron.getBoundingClientRect().width : 0;
+    const available = Math.max(20, rowRect.width - chevronWidth - 12);
+    let fs = TITLE_MAX;
+    let safety = 0;
+    while(titleEl.scrollWidth > available && fs > TITLE_MIN && safety++ < 120){
+      fs = Math.max(TITLE_MIN, fs - 0.5);
+      titleEl.style.fontSize = fs + 'px';
+    }
   }
-});
+
+  function fitAllTitles(){
+    document.querySelectorAll('.option-title').forEach(el=>fitTitleElement(el));
+  }
+
+  let resizeTimer = null;
+  window.addEventListener('resize', ()=>{
+    if(resizeTimer) cancelAnimationFrame(resizeTimer);
+    resizeTimer = requestAnimationFrame(fitAllTitles);
+  });
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    setTimeout(fitAllTitles, 60);
+    setTimeout(fitAllTitles, 700);
+  });
+
+  window.fitDashboardTitles = fitAllTitles;
+})();
 </script>
 
 </body>
