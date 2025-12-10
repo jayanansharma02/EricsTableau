@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ericsson Managed Services — Compact Option Cards</title>
+
+<style>
+/* Ericsson Hilda (WOFF) */
+@font-face {
+  font-family: 'Ericsson Hilda';
+  src: url('https://raw.githubusercontent.com/jayanansharma02/EricsTableau/cd6fe1050629981c5670646568128dbdea8405b0/EricssonHilda-Regular.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root{
+  --accent:#FF8C0A;
+  --bg:#000000;
+  --card-border: rgba(255,255,255,0.24);
+  --muted: rgba(255,255,255,0.78);
+  --title-max: 18px;
+  --title-min: 11px;
+  --actions-w:72px;
+  --transition-speed: 320ms;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+
+body{
+  margin:0;
+  font-family:'Ericsson Hilda';
+  background:
+    #020617
+    url("https://raw.githubusercontent.com/jayanansharma02/EricsTableau/ffe87840260b308d72f5300d771d32d877bf105f/Adobe%20Express_3000x1800.png")
+    center no-repeat fixed;
+  background-size: 7000px;
+  -webkit-font-smoothing:antialiased;
+
+  overflow-x:hidden;
+  overflow-y:hidden;
+}
+
+/* ---------- Page container ---------- */
+.container{
+  position:relative;
+  z-index:1;
+  max-width:1400px;
+  margin:10px auto;  
+  padding:16px;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+.logo-top-right{
+  position:absolute;
+  top:14px;
+  right:18px;
+  z-index:20;
+}
+.logo-top-right img{
+  height:52px;
+  filter:drop-shadow(0 10px 24px rgba(0,0,0,0.55));
+}
+
+/* ---------- Topline ---------- */
+.topline{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  margin-bottom:8px;
+}
+.badge{
+  justify-self:start;
+  background:var(--accent);
+  color:#111;
+  padding:8px 14px;
+  border-radius:12px;
+  font-weight:900;
+  box-shadow:0 12px 40px rgba(0,0,0,0.45);
+  font-size:13px;
+}
+.brand{
+  justify-self:center;
+  color:white;
+  font-weight:700;
+  font-size:38px;
+  opacity:0.98;
+  text-align:center;
+  line-height:1.1;
+}
+
+/* ---------- HERO (Standard Benchmarking Template box) ---------- */
+.hero{
+  margin-top:6px;
+  background:rgba(2,6,23,0.1);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-radius:18px;
+
+  padding:40px 24px 40px;
+  min-height:320px;
+
+  border:1px solid rgba(255,255,255,0.26);
+  box-shadow:0 18px 60px rgba(0,0,0,0.88);
+  text-align:left;            /* ⬅️ left aligned */
+
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+.hero-inner{
+  max-width:100%;             /* full width */
+  margin:0 auto;
+}
+.h-title{
+  font-size:clamp(52px, 7vw, 112px);
+  margin:0;
+  font-weight:900;
+  line-height:0.98;
+  color:white;
+  text-shadow:0 14px 44px rgba(0,0,0,0.9);
+}
+.h-sub{
+  margin-top:10px;
+  font-size:18px;
+  color:rgba(255,255,255,0.92);
+  font-weight:700;
+}
+
+/* ---------- Cards row ---------- */
+.cards-top{
+  margin-top:18px;
+  padding-top:10px;
+  display:flex;
+  gap:18px;
+  align-items:flex-start;
+  justify-content:space-between;
+  flex-wrap:nowrap;
+  overflow-x:hidden;
+  padding-bottom:2px;
+  box-sizing:border-box;
+}
+.cards-top::-webkit-scrollbar{ height:0; background:transparent; }
+
+/* ---------- OPTION CARDS ---------- */
+.option-card{
+  background:transparent;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  border-radius:14px;
+  padding:10px 12px;
+
+  flex:1 1 0;
+  min-width:0;
+  max-width:none;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:4px;
+  border:1px solid var(--card-border);
+  box-shadow:0 8px 24px rgba(0,0,0,0.65);
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.option-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 50px rgba(0,0,0,0.9);
+  cursor:pointer;
+}
+.option-title-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  width:100%;
+}
+.option-title{
+  color:var(--accent);
+  font-weight:900;
+  font-size:var(--title-max);
+  margin:0;
+  line-height:1.05;
+  white-space:nowrap;
+  overflow:visible;
+  text-overflow:unset;
+  max-width:calc(100% - 56px);
+  display:inline-block;
+}
+.option-title a{
+  color:var(--accent);
+  text-decoration:none;
+}
+.option-title a:hover{
+  text-decoration:underline;
+}
+.option-chevron{
+  width:30px;
+  height:30px;
+  border-radius:10px;
+  background:rgba(2,6,23,0.3);
+  border:1px solid rgba(255,255,255,0.3);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--accent);
+  flex-shrink:0;
+}
+
+/* ---------- TOP-GUIDE BELOW HERO ---------- */
+.top-guide{
+  margin-top:10px;
+  background:rgba(2,6,23,0.3);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-radius:14px;
+  padding:12px;
+  border:1px solid rgba(255,255,255,0.10);
+  box-shadow:0 14px 40px rgba(0,0,0,0.80);
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  justify-content:space-between;
+
+  max-height:calc(100vh - 10px - 52px - 8px - 320px - 20px);
+  overflow-y:auto;
+}
+.top-guide .left{
+  flex:1 1 auto;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+}
+.top-guide h2{
+  margin:0 0 4px 0;
+  color:var(--accent);
+  font-weight:900;
+  font-size:18px;
+}
+.guide-details{
+  overflow:hidden;
+  transition:max-height var(--transition-speed) ease, opacity var(--transition-speed) ease;
+  max-height:1200px;
+  opacity:1;
+  margin-top:4px;
+}
+.top-guide.collapsed .guide-details{
+  max-height:0;
+  opacity:0;
+  margin-top:0;
+}
+.top-guide p{
+  margin:0 0 6px 0;
+  color:rgba(255,255,255,0.92);
+  font-weight:700;
+  font-size:13px;
+}
+.guide-grid{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  flex-wrap:nowrap;
+  width:100%;
+  overflow:hidden;
+  margin-top:8px;
+}
+.expl-card{
+  background:transparent;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  border-radius:10px;
+  padding:12px;
+  border:1px solid rgba(255,255,255,0.24);
+  box-shadow:0 8px 24px rgba(0,0,0,0.6);
+
+  flex:1 1 0;
+  min-width:0;
+  max-width:none;
+
+  display:flex;
+  flex-direction:column;
+}
+.expl-card-title{
+  margin:0 0 6px 0;
+  color:var(--accent);
+  font-weight:1000;
+  font-size:18px;
+}
+.expl-card-text{
+  margin:0;
+  padding-left:16px;
+  font-size:12px;
+  line-height:1.32;
+  color:rgba(255,255,255,0.96);
+}
+.expl-card-text li{ margin-bottom:4px; }
+
+.actions{
+  width:var(--actions-w);
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-end;
+}
+.collapse-btn{
+  --pad-x:10px; --pad-y:6px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:var(--pad-y) var(--pad-x);
+  border-radius:999px;
+  background:rgba(2,6,23,0.3);
+  color:#fff;
+  font-weight:800;
+  font-size:11px;
+  border:1px solid rgba(255,255,255,0.3);
+  cursor:pointer;
+}
+.collapse-btn svg{
+  width:14px;
+  height:14px;
+  transform-origin:center;
+  transition:transform var(--transition-speed) ease;
+}
+.top-guide.collapsed .collapse-btn svg{
+  transform:rotate(180deg);
+}
+
+/* Floating submenu */
+.submenu{ display:none; }
+#floatingSub{
+  position:fixed;
+  z-index:99999;
+  display:none;
+  min-width:220px;
+  background:rgba(2,6,23,0.3);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid var(--card-border);
+  padding:10px;
+  border-radius:12px;
+  box-shadow:0 26px 80px rgba(0,0,0,0.98);
+
+  max-height:320px;
+  overflow-y:auto;
+  overflow-x:hidden;
+
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,0.4) transparent;
+}
+
+/* Dropdown scrollbar */
+#floatingSub::-webkit-scrollbar{
+  width:6px;
+}
+#floatingSub::-webkit-scrollbar-track{
+  background:transparent;
+}
+#floatingSub::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,0.4);
+  border-radius:999px;
+}
+#floatingSub a{
+  display:block;
+  padding:10px 12px;
+  border-radius:8px;
+  background:rgba(255,255,255,0.02);
+  color:var(--accent);
+  text-decoration:none;
+  font-weight:700;
+  margin-bottom:8px;
+}
+#floatingSub a:hover{
+  background:rgba(255,255,255,0.06);
+  color:var(--accent);
+}
+
+/* Contact line */
+.contact-line{
+  margin-top:10px;
+  text-align:center;
+  font-size:13px;
+  font-weight:600;
+  color:rgba(255,255,255,0.9);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:980px){
+  .cards-top{
+    flex-wrap:wrap;
+    gap:14px;
+    overflow-x:visible;
+    padding:10px;
+  }
+  .option-card{
+    flex:1 1 48%;
+    min-width:220px;
+  }
+}
+@media (max-width:420px){
+  .option-title{ max-width:calc(100% - 44px); }
+}
+@media (max-width:780px){
+  .guide-grid{ flex-wrap:wrap; gap:10px; }
+  .expl-card{ flex:1 1 48%; min-width:160px; }
+  .actions{ width:56px; }
+}
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="logo-top-right" aria-hidden="true">
+      <img src="https://raw.githubusercontent.com/jayanansharma02/EricsTableau/e60861eeda9e89b8a3ed0b8099b70d5b923c40e0/Ericsson%20Logo%201.png" alt="Ericsson logo">
+    </div>
+
+    <div class="topline">
+      <div class="badge">Live Dashboard</div>
+      <div class="brand">Ericsson Managed Services</div>
+    </div>
+
+    <!-- HERO FIRST -->
+    <section class="hero" aria-label="Main hero area">
+      <div class="hero-inner">
+        <h1 class="h-title">Standard Benchmarking Template</h1>
+        <div class="h-sub">Live insights, trends & impact — quick actions and highlights</div>
+
+        <div class="cards-top" role="navigation" aria-label="Primary dashboard shortcuts">
+
+          <!-- KPI Comparison YOY -->
+          <div class="option-card" id="kpi-card" role="button" tabindex="0" aria-label="KPI Comparison YOY">
+            <div class="option-title-row">
+              <h3 class="option-title">
+                <a
+                  href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/KPI_Comparison_YOY/Home"
+                  class="title-link"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  KPI Comparison YOY
+                </a>
+              </h3>
+              <div class="option-chevron" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="submenu" id="kpi-sub">
+              <a href="#" target="_blank" rel="noopener">KPI Comparison YOY — MEMA</a>
+              <a href="#" target="_blank" rel="noopener">KPI Comparison YOY — MOAI</a>
+            </div>
+          </div>
+
+          <!-- Trending & Ranking -->
+          <div class="option-card" id="trend-card" role="button" tabindex="0" aria-label="Trending & Ranking">
+            <div class="option-title-row">
+              <h3 class="option-title">
+                <a
+                  href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/Trending_and_Ranking/Home"
+                  class="title-link"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Trending &amp; Ranking
+                </a>
+              </h3>
+              <div class="option-chevron" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="submenu" id="trend-sub">
+              <a href="#" target="_blank" rel="noopener">Trending &amp; Ranking — MEMA</a>
+              <a href="#" target="_blank" rel="noopener">Trending &amp; Ranking — MOAI</a>
+            </div>
+          </div>
+
+          <!-- FootPrint -->
+          <div class="option-card" id="foot-card" role="button" tabindex="0" aria-label="FootPrint">
+            <div class="option-title-row">
+              <h3 class="option-title">
+                <a
+                  href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/Footprint/Home?:iid=2"
+                  class="title-link"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  FootPrint
+                </a>
+              </h3>
+              <div class="option-chevron" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="submenu" id="foot-sub">
+              <a href="#" target="_blank" rel="noopener">FootPrint — SDU India</a>
+              <a href="#" target="_blank" rel="noopener">FootPrint — SDU Romania</a>
+              <a href="#" target="_blank" rel="noopener">FootPrint — SDU MBNL</a>
+              <a href="#" target="_blank" rel="noopener">FootPrint — SDU SNOC</a>
+            </div>
+          </div>
+
+          <!-- Ericsson Impact -->
+          <div class="option-card" id="impact-card" role="button" tabindex="0" aria-label="Ericsson Impact">
+            <div class="option-title-row">
+              <h3 class="option-title">
+                <a
+                  href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/EricssonImpact/Home?:iid=4"
+                  class="title-link"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Ericsson Impact
+                </a>
+              </h3>
+              <div class="option-chevron" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="submenu" id="impact-sub">
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/EricssonImpact/Version1?:iid=3" target="_blank" rel="noopener">
+                Ericsson Impact — Version 1
+              </a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/EricssonImpact/Version2?:iid=3" target="_blank" rel="noopener">
+                Ericsson Impact — Version 2
+              </a>
+            </div>
+          </div>
+
+          <!-- Account Information -->
+          <div class="option-card" id="acct-card" role="button" tabindex="0" aria-label="Account Information">
+            <div class="option-title-row">
+              <h3 class="option-title">
+                <a
+                  href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/Home?:iid=1"
+                  class="title-link"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Account Information
+                </a>
+              </h3>
+              <div class="option-chevron" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="submenu" id="acct-sub">
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/BhartiIndia?:iid=1" target="_blank" rel="noopener">Account Info — Bharti India</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/CelcomDigi?:iid=2" target="_blank" rel="noopener">Account Info — Celcom Digi</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/DNBMalaysia?:iid=2" target="_blank" rel="noopener">Account Info — DNB Malaysia</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/MBNLUK?:iid=2" target="_blank" rel="noopener">Account Info — MBNL UK</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/MobilyKSA?:iid=2" target="_blank" rel="noopener">Account Info — Mobily KSA</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/NBNAustralia?:iid=2" target="_blank" rel="noopener">Account Info — NBN Australia</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/TelenetBelgium?:iid=2" target="_blank" rel="noopener">Account Info — Telenet Belgium</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/TDCDenmark?:iid=2" target="_blank" rel="noopener">Account Info — TDC Denmark</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/DTACThailand?:iid=2" target="_blank" rel="noopener">Account Info — TrueCo</a>
+              <a href="https://global-operationsenginedashboard.ericsson.net/#/site/SLOPEnhancedDataAnalytics/views/AccountInformation/STCKSA?:iid=2" target="_blank" rel="noopener">Account Info — STC KSA</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TOP-GUIDE BELOW HERO -->
+    <div id="topGuide" class="top-guide" role="region" aria-label="Dashboard guide" aria-expanded="true">
+      <div class="left">
+        <h2>What each dashboard shows</h2>
+        <p>Quick reference — key purpose, how to use, and when to open each view.</p>
+
+        <div id="guideDetails" class="guide-details">
+          <div class="guide-grid" aria-hidden="false">
+            <div class="expl-card">
+              <h3 class="expl-card-title">KPI Comparison YOY</h3>
+              <ul class="expl-card-text">
+                <li>Compare current year vs previous year performance</li>
+                <li>Check KPI rankings and rank movement YoY</li>
+                <li>Identify improvement or decline in KPI trends</li>
+                <li>Supports year-over-year business performance decisions</li>
+              </ul>
+            </div>
+
+            <div class="expl-card">
+              <h3 class="expl-card-title">Trending &amp; Ranking</h3>
+              <ul class="expl-card-text">
+                <li>View KPI trends for multiple customers over time</li>
+                <li>Check ranking movements across selected periods</li>
+                <li>Flexible granularity: Monthly, Quarterly, Half-yearly, or Yearly</li>
+                <li>Quickly identify improvements and declines</li>
+              </ul>
+            </div>
+
+            <div class="expl-card">
+              <h3 class="expl-card-title">FootPrint</h3>
+              <ul class="expl-card-text">
+                <li>Domain-wise node count overview across the network</li>
+                <li>Vendor-wise breakdown for RAN logical nodes</li>
+                <li>Alarm and WO projections for the upcoming year</li>
+                <li>Supports planning and operational resource allocation</li>
+              </ul>
+            </div>
+
+            <div class="expl-card">
+              <h3 class="expl-card-title">Ericsson Impact</h3>
+              <ul class="expl-card-text">
+                <li>Compares KPI performance across 3 delivery categories</li>
+                <li>Highlights gains in availability, throughput &amp; CX KPIs</li>
+                <li>Displays reduced faults &amp; faster service restoration</li>
+                <li>Helps quantify the impact of Ericsson’s operational excellence journey</li>
+              </ul>
+            </div>
+
+            <div class="expl-card">
+              <h3 class="expl-card-title">Account Information</h3>
+              <ul class="expl-card-text">
+                <li>Showcases the transformation scope — subscribers, sites, calls, and core nodes managed</li>
+                <li>Demonstrates automation impact</li>
+                <li>Highlights operational efficiency gains</li>
+                <li>Shows improved network outcomes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="collapseGuideBtn" class="collapse-btn" aria-expanded="true" title="Collapse or expand guide">
+          <span class="btn-label">Collapse</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="floatingSub" role="menu" aria-hidden="true"></div>
+
+<script>
+/* Floating submenu for KPI, Trend, FootPrint, Impact, Account Info */
+let openCardId = null;
+const dropdownCardIds = ['kpi-card','trend-card','foot-card','impact-card','acct-card'];
+
+function toggleFloating(cardId){
+  if(!dropdownCardIds.includes(cardId)) return;
+  if(openCardId === cardId){ closeFloatingSub(); } else { openFloatingSub(cardId); }
+}
+
+function openFloatingSub(cardId){
+  const card = document.getElementById(cardId);
+  if(!card) return;
+  if(openCardId && openCardId !== cardId) closeFloatingSub();
+  const srcSub = card.querySelector('.submenu');
+  if(!srcSub) return;
+  const floating = document.getElementById('floatingSub');
+  floating.innerHTML = srcSub.innerHTML;
+  const rect = card.getBoundingClientRect();
+  const viewportW = window.innerWidth;
+  const width = Math.max(220, Math.min(420, rect.width + 40));
+  let left = rect.left + (rect.width/2) - (width/2);
+  if(left < 12) left = 12;
+  if(left + width > viewportW - 12) left = Math.max(12, viewportW - width - 12);
+  const top = rect.bottom + 8;
+  floating.style.minWidth = width + 'px';
+  floating.style.left = left + 'px';
+  floating.style.top = top + 'px';
+  floating.style.display = 'block';
+  floating.setAttribute('aria-hidden','false');
+  openCardId = cardId;
+  setTimeout(()=>{
+    document.addEventListener('click', onDocClick);
+    document.addEventListener('keydown', onKeyDown);
+    window.addEventListener('resize', closeFloatingSub);
+    window.addEventListener('scroll', closeFloatingSub, {passive:true});
+  },0);
+}
+
+function closeFloatingSub(){
+  const floating = document.getElementById('floatingSub');
+  if(!floating) return;
+  floating.style.display = 'none';
+  floating.setAttribute('aria-hidden','true');
+  floating.innerHTML = '';
+  openCardId = null;
+  document.removeEventListener('click', onDocClick);
+  document.removeEventListener('keydown', onKeyDown);
+  window.removeEventListener('resize', closeFloatingSub);
+  window.removeEventListener('scroll', closeFloatingSub);
+}
+
+function onDocClick(e){
+  const insideFloating = !!e.target.closest('#floatingSub');
+  const clickedDropdownCard = e.target.closest('#kpi-card, #trend-card, #foot-card, #impact-card, #acct-card');
+  if(insideFloating) return;
+  if(clickedDropdownCard) return;
+  closeFloatingSub();
+}
+function onKeyDown(e){
+  if(e.key === 'Escape') closeFloatingSub();
+}
+
+dropdownCardIds.forEach(id=>{
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.addEventListener('click', function(e){
+    if(e.target.closest('a')) return;
+    toggleFloating(this.id);
+  });
+  el.addEventListener('keydown', e=>{
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      toggleFloating(el.id);
+    }
+  });
+});
+
+document.getElementById('floatingSub').addEventListener('click', function(e){
+  const link = e.target.closest('a');
+  if(link) closeFloatingSub();
+});
+
+/* Collapse / Expand top guide */
+const topGuide = document.getElementById('topGuide');
+const collapseBtn = document.getElementById('collapseGuideBtn');
+
+function setCollapsed(collapsed){
+  if(collapsed){
+    topGuide.classList.add('collapsed');
+    collapseBtn.setAttribute('aria-expanded','false');
+    collapseBtn.querySelector('.btn-label').textContent = 'Expand';
+    topGuide.setAttribute('aria-expanded','false');
+  } else {
+    topGuide.classList.remove('collapsed');
+    collapseBtn.setAttribute('aria-expanded','true');
+    collapseBtn.querySelector('.btn-label').textContent = 'Collapse';
+    topGuide.setAttribute('aria-expanded','true');
+  }
+}
+
+let isCollapsed = true;
+setCollapsed(isCollapsed);
+
+collapseBtn.addEventListener('click', function(){
+  isCollapsed = !isCollapsed;
+  setCollapsed(isCollapsed);
+});
+collapseBtn.addEventListener('keydown', function(e){
+  if(e.key === ' ' || e.key === 'Enter'){
+    e.preventDefault();
+    collapseBtn.click();
+  }
+});
+
+/* Title auto-scaling for option cards */
+(function(){
+  const TITLE_MAX = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--title-max')) || 18;
+  const TITLE_MIN = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--title-min')) || 11;
+
+  function fitTitleElement(titleEl){
+    if(!titleEl) return;
+    titleEl.style.fontSize = TITLE_MAX + 'px';
+    const row = titleEl.closest('.option-title-row');
+    if(!row) return;
+    const chevron = row.querySelector('.option-chevron');
+    const rowRect = row.getBoundingClientRect();
+    const chevronWidth = chevron ? chevron.getBoundingClientRect().width : 0;
+    const available = Math.max(20, rowRect.width - chevronWidth - 12);
+    let fs = TITLE_MAX;
+    let safety = 0;
+    while(titleEl.scrollWidth > available && fs > TITLE_MIN && safety++ < 120){
+      fs = Math.max(TITLE_MIN, fs - 0.5);
+      titleEl.style.fontSize = fs + 'px';
+    }
+  }
+
+  function fitAllTitles(){
+    document.querySelectorAll('.option-title').forEach(el=>fitTitleElement(el));
+  }
+
+  let resizeTimer = null;
+  window.addEventListener('resize', ()=>{
+    if(resizeTimer) cancelAnimationFrame(resizeTimer);
+    resizeTimer = requestAnimationFrame(fitAllTitles);
+  });
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    setTimeout(fitAllTitles, 60);
+    setTimeout(fitAllTitles, 700);
+  });
+
+  window.fitDashboardTitles = fitAllTitles;
+})();
+</script>
+
+</body>
+</html>
